@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#183A32">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='22' r='12' fill='%23E9A23B'/%3E%3Cpath d='M6 26c4-6 10-6 14 0s10 6 14 0v10H6z' fill='%23A04A28'/%3E%3C/svg%3E">
+<title>Nimbo Estudio</title>
+<meta name="description" content="Nimbo Estudio: identidad de marca, comunicación y espacios. Maqueta de práctica con marca ficticia.">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;600;800&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,700;0,6..12,900;1,6..12,400&display=swap">
+<style>
+/* Layout: revista viva. Titulares gigantes que se cruzan con collages de piezas, cinta de servicios en movimiento, galería de proyectos con maquetas dibujadas en CSS. */
+:root{
+  --paper:#F4EEE3; --surface:#FBF7F0; --line:#DCD1BD; --border-input:#7A6E5C;
+  --text:#18241F; --muted:#4C5853;
+  --ink:#183A32; --on-ink:#F4EEE3; --on-ink-muted:#C5D2CA;
+  --accent:#A04A28; --on-accent:#FFFFFF;
+  --saffron:#E9A23B; --rose:#EBC1B2; --sage:#A9BBA2; --sky:#A7C7D2; --plum:#5B3A4C; --cream:#FFF8EA;
+  --serif:'Abhaya Libre', Georgia, 'Times New Roman', serif;
+  --sans:'Nunito Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --maxw:1200px; --r:10px; --ease:cubic-bezier(.2,.8,.2,1);
+  --shadow:0 2px 4px rgba(24,36,31,.06), 0 18px 40px -12px rgba(24,36,31,.28);
+  --grain-op:.07;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#121A17; --surface:#19231F; --line:#2E3C37; --border-input:#8A9A93;
+  --text:#EFE8DC; --muted:#B3BDB7; --ink:#0B1210; --on-ink:#EFE8DC; --on-ink-muted:#AAB7B0;
+  --accent:#E58C63; --on-accent:#1A0E08;
+  --shadow:0 2px 4px rgba(0,0,0,.35), 0 18px 40px -12px rgba(0,0,0,.6); --grain-op:.05; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#121A17; --surface:#19231F; --line:#2E3C37; --border-input:#8A9A93;
+  --text:#EFE8DC; --muted:#B3BDB7; --ink:#0B1210; --on-ink:#EFE8DC; --on-ink-muted:#AAB7B0;
+  --accent:#E58C63; --on-accent:#1A0E08;
+  --shadow:0 2px 4px rgba(0,0,0,.35), 0 18px 40px -12px rgba(0,0,0,.6); --grain-op:.05; color-scheme:dark }
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--text);font:400 1.0625rem/1.65 var(--sans);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+/* Grano de papel sobre toda la página */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opacity:var(--grain-op);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:3px}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--on-ink);padding:8px 12px;z-index:50}
+.skip:focus{left:16px}
+h1,h2,h3{font-family:var(--serif);font-weight:800;margin:0;text-wrap:balance;letter-spacing:-.025em;color:var(--text)}
+h2{font-size:clamp(2.4rem,5.5vw,4.4rem);line-height:.98}
+h3{font-size:1.6rem;line-height:1.1;font-weight:600}
+em{font-style:italic;font-weight:500}
+p{margin:0;max-width:60ch}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:900 .78rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:.6em;min-height:52px;padding:0 1.5em;border-radius:999px;font:900 .9rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background-color .25s}
+.btn svg{width:18px;height:18px;transition:transform .25s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn-primary{background:var(--accent);color:var(--on-accent);box-shadow:0 6px 0 -1px color-mix(in srgb,var(--accent) 55%,#000)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 0 -1px color-mix(in srgb,var(--accent) 55%,#000)}
+.btn-primary:active{transform:translateY(3px);box-shadow:0 2px 0 -1px color-mix(in srgb,var(--accent) 55%,#000)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.btn-ghost:hover{background:color-mix(in srgb,currentColor 8%,transparent)}
+
+/* ---------- Cabecera ---------- */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(10px) saturate(1.2);border-bottom:1px solid transparent;transition:border-color .3s}
+.site-header.scrolled{border-bottom-color:var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:76px}
+.logo{font:800 2rem/1 var(--serif);text-decoration:none;letter-spacing:-.04em;display:inline-flex;align-items:center;gap:6px}
+.logo-mark{width:30px;height:30px;flex:none}
+.nav{display:flex;align-items:center;gap:28px}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;align-items:center}
+.nav a,.nav summary{font-weight:700;font-size:.95rem;text-decoration:none;cursor:pointer;padding:8px 14px;border-radius:999px;display:block;transition:background-color .2s}
+.nav a:hover,.nav summary:hover{background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.nav details{position:relative}
+.nav summary{list-style:none;display:flex;gap:8px;align-items:center}
+.nav summary::-webkit-details-marker{display:none}
+.nav summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
+.nav details[open] summary::after{transform:rotate(225deg) translate(-2px,0)}
+.nav details ul{position:absolute;top:calc(100% + 10px);left:0;flex-direction:column;align-items:stretch;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:8px;min-width:250px}
+.nav details ul a{display:flex;gap:12px;align-items:center;border-radius:10px;padding:10px 12px}
+.nav details ul a i{width:34px;height:34px;border-radius:9px;flex:none}
+.nav details ul a small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
+.cta-mini{background:var(--ink);color:var(--on-ink)!important}
+.cta-mini:hover{background:var(--accent)!important;color:var(--on-accent)!important}
+.menu-btn{display:none;background:none;border:2px solid var(--text);border-radius:999px;width:46px;height:46px;color:var(--text);cursor:pointer}
+.menu-btn svg{width:20px;height:20px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding-block:clamp(40px,6vw,80px) clamp(56px,7vw,96px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,4vw,64px);align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:26px;min-width:0;position:relative;z-index:2}
+.hero h1{font-size:clamp(3.2rem,8.2vw,7rem);line-height:.9}
+.hero h1 .swash{font-style:italic;font-weight:500;color:var(--accent);display:inline-block}
+.hero h1 .hl{position:relative;white-space:nowrap}
+.hero h1 .hl svg{position:absolute;left:-4%;bottom:-.12em;width:108%;height:.4em;overflow:visible}
+.hero h1 .hl path{stroke:var(--saffron);stroke-width:7;fill:none;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:0;animation:draw 1.4s .4s var(--ease) both}
+@keyframes draw{from{stroke-dashoffset:420}}
+.lead{font-size:1.22rem;color:var(--muted)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.avail{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:.92rem}
+.avail i{width:10px;height:10px;border-radius:50%;background:#2E9C62;box-shadow:0 0 0 0 rgba(46,156,98,.5);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(46,156,98,0)}100%{box-shadow:0 0 0 0 rgba(46,156,98,0)}}
+
+/* Collage */
+.collage{position:relative;aspect-ratio:1/1.05;max-width:100%;min-width:0}
+.piece{position:absolute;border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;transition:transform .5s var(--ease)}
+.collage:hover .p1{transform:rotate(-9deg) translate(-10px,-6px)}
+.collage:hover .p2{transform:rotate(5deg) translate(10px,-10px)}
+.collage:hover .p3{transform:rotate(-2deg) translateY(8px)}
+.p1{left:2%;top:4%;width:52%;aspect-ratio:3/4;transform:rotate(-6deg);background:var(--ink)}
+.p2{right:0;top:0;width:46%;aspect-ratio:4/5;transform:rotate(4deg);background:var(--saffron);z-index:2}
+.p3{left:20%;bottom:0;width:62%;aspect-ratio:16/10;transform:rotate(1deg);background:var(--rose);z-index:3}
+.p1 svg,.p2 svg,.p3 svg{display:block;width:100%;height:100%}
+.badge{position:absolute;right:4%;bottom:8%;width:clamp(104px,14vw,138px);aspect-ratio:1;z-index:4;color:var(--text)}
+.badge svg{width:100%;height:100%;animation:spin 18s linear infinite}
+.badge::after{content:"";position:absolute;inset:34%;border-radius:50%;background:var(--accent)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- Cinta de servicios ---------- */
+.ticker{background:var(--ink);color:var(--on-ink);overflow:hidden;padding-block:18px;transform:rotate(-1.2deg);margin-inline:-20px;border-block:3px solid var(--saffron)}
+.ticker-track{display:flex;width:max-content;gap:40px;animation:slide 34s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker span{font:600 clamp(1.4rem,3vw,2.1rem)/1 var(--serif);display:inline-flex;align-items:center;gap:40px;white-space:nowrap}
+.ticker span::after{content:"✳";color:var(--saffron);font-family:var(--sans)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- Bandas ---------- */
+.band{padding-block:clamp(72px,10vw,140px)}
+.head{display:grid;grid-template-columns:1.1fr .9fr;gap:24px 72px;align-items:end;margin-bottom:56px}
+.head .eyebrow{grid-column:1/-1}
+.head p{color:var(--muted);font-size:1.1rem}
+h2 em{color:var(--accent)}
+
+/* Servicios */
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.service{position:relative;border-radius:22px;padding:clamp(28px,3.4vw,44px);display:flex;flex-direction:column;gap:18px;overflow:hidden;isolation:isolate;min-height:460px;transition:transform .4s var(--ease)}
+.service:hover{transform:translateY(-6px)}
+.service.raiz{background:var(--sage);color:#17241E}
+.service.trazo{background:var(--sky);color:#14232A}
+.service h3,.service p,.service li{color:inherit}
+.service h3{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:800}
+.service .kicker{font:900 .78rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.service ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.service li{padding:8px 14px;border-radius:999px;border:1.5px solid currentColor;font-weight:700;font-size:.88rem}
+.service .art{position:absolute;right:-40px;bottom:-40px;width:250px;height:250px;z-index:-1;opacity:.95;transition:transform .8s var(--ease)}
+.service:hover .art{transform:rotate(20deg) scale(1.06)}
+.service a.more{margin-top:auto;align-self:flex-start;font:900 .88rem/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;background:#17241E;color:#F4EEE3;padding:15px 20px;border-radius:999px}
+.service.trazo a.more{background:#14232A}
+.service a.more:hover{background:var(--accent);color:var(--on-accent)}
+
+/* ---------- Proyectos ---------- */
+.projects{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+.project{grid-column:span 4;display:flex;flex-direction:column;gap:14px;text-decoration:none;min-width:0}
+.project.wide{grid-column:span 8}
+.project .frame{border-radius:18px;overflow:hidden;aspect-ratio:4/3.2;position:relative;box-shadow:var(--shadow);transition:transform .5s var(--ease)}
+.project.wide .frame{aspect-ratio:16/9.4}
+.project:hover .frame{transform:translateY(-6px) rotate(-.6deg)}
+.project .frame svg{width:100%;height:100%;display:block;transition:transform .8s var(--ease)}
+
+.project .meta{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.project h3{font-size:1.45rem}
+.project .tags{font-size:.85rem;color:var(--muted);font-weight:700}
+.project .note{font-size:.95rem;color:var(--muted)}
+
+/* ---------- Proceso ---------- */
+.process{background:var(--surface);border-block:1px solid var(--line)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;counter-reset:s}
+.steps li{counter-increment:s;position:relative;display:flex;flex-direction:column;gap:12px;padding:28px 24px;border-radius:18px;background:var(--paper);border:1px solid var(--line);transition:background-color .3s,transform .3s var(--ease)}
+.steps li:hover{transform:translateY(-4px);background:var(--surface)}
+.steps li::before{content:counter(s);font:800 3.6rem/.8 var(--serif);color:var(--accent);letter-spacing:-.04em}
+.steps li:not(:last-child)::after{content:"";position:absolute;top:52px;right:-21px;width:22px;height:2px;background:var(--line)}
+.steps h3{font-size:1.4rem}
+.steps p{color:var(--muted);font-size:.98rem}
+.steps .time{align-self:flex-start;font:900 .72rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:7px 10px;border-radius:999px;background:color-mix(in srgb,var(--saffron) 35%,transparent);color:var(--text)}
+
+/* ---------- Estudio ---------- */
+.studio{background:var(--ink);color:var(--on-ink);position:relative;overflow:hidden}
+.studio h2,.studio .eyebrow{color:var(--on-ink)}
+.studio h2 em{color:var(--saffron)}
+.studio .eyebrow::before{background:var(--saffron)}
+.studio-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px 88px;align-items:center;position:relative;z-index:1}
+.studio .col{display:flex;flex-direction:column;gap:22px;min-width:0}
+.studio p{color:var(--on-ink-muted);font-size:1.08rem}
+.studio blockquote{margin:0;font:500 italic clamp(1.6rem,2.8vw,2.2rem)/1.2 var(--serif);color:var(--on-ink);border-left:3px solid var(--saffron);padding-left:22px}
+.studio .btn-ghost{color:var(--on-ink);align-self:flex-start}
+.desk{position:relative;aspect-ratio:1/1;max-width:100%;border-radius:22px;overflow:hidden;background:#244B41}
+.desk svg{width:100%;height:100%;display:block}
+.orbit{position:absolute;width:520px;height:520px;right:-180px;top:-180px;border-radius:50%;border:1px solid rgba(233,162,59,.25);z-index:0}
+.orbit::after{content:"";position:absolute;inset:60px;border-radius:50%;border:1px dashed rgba(233,162,59,.2)}
+
+/* ---------- Contacto ---------- */
+.contact-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:48px 80px;align-items:start}
+.contact-grid .col{display:flex;flex-direction:column;gap:22px;min-width:0}
+.mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 16px;border-radius:14px;border:1.5px dashed var(--border-input);font-weight:700}
+.mail code{font:inherit;user-select:all}
+.copy{font:900 .75rem/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;border:0;border-radius:999px;padding:10px 14px;background:var(--ink);color:var(--on-ink);cursor:pointer}
+form{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,3vw,40px);display:grid;gap:20px;box-shadow:var(--shadow)}
+.field{display:grid;gap:8px}
+label,.legend{font-weight:900;font-size:.86rem;letter-spacing:.04em}
+input,textarea{font:inherit;color:var(--text);background:var(--paper);border:1.5px solid var(--border-input);border-radius:12px;padding:13px 15px;width:100%;transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 20%,transparent)}
+textarea{min-height:120px;resize:vertical}
+.hint{font-size:.86rem;color:var(--muted)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;border:0;margin:0;padding:0}
+.chips input{position:absolute;opacity:0;width:1px;height:1px}
+.chips label{font-weight:700;font-size:.9rem;letter-spacing:0;padding:10px 16px;border-radius:999px;border:1.5px solid var(--border-input);cursor:pointer;transition:all .2s}
+.chips input:checked+label{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.chips input:focus-visible+label{outline:2.5px solid var(--accent);outline-offset:2px}
+.status{font-weight:700;color:var(--accent);min-height:1.4em}
+
+/* ---------- Pie ---------- */
+footer{background:var(--surface);border-top:1px solid var(--line);padding-block:64px 32px;overflow:hidden}
+.big-word{font:800 clamp(5rem,19vw,16rem)/.8 var(--serif);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px var(--line);margin:0 0 40px;user-select:none;white-space:nowrap}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.foot h4{margin:0 0 14px;font:900 .76rem/1.4 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot a{text-decoration:none;font-weight:700}
+.foot a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.legal{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.86rem;color:var(--muted)}
+
+
+/* ---------- Fotografía ---------- */
+.piece img,.frame img,.shot img,.desk img{display:block;width:100%;height:100%;object-fit:cover;background:var(--line)}
+.piece,.frame,.desk{background:var(--line)}
+.p1{background:var(--line)} .p2{background:var(--line)} .p3{background:var(--line)}
+.sticker{position:absolute;left:14px;bottom:14px;font:800 1.05rem/1 var(--serif);letter-spacing:-.01em;background:var(--cream);color:#18241F;padding:9px 13px;border-radius:999px;box-shadow:0 6px 16px rgba(0,0,0,.18);transform:rotate(-3deg)}
+.sticker.s2{background:#5B3A4C;color:#FFF8EA;left:auto;right:14px;top:14px;bottom:auto;transform:rotate(4deg)}
+.card-print{position:absolute;left:28%;top:30%;display:flex;flex-direction:column;gap:2px;color:#18241F;transform:rotate(-14deg)}
+.card-print b{font:800 italic clamp(1.1rem,2.4vw,1.7rem)/1 var(--serif)}
+.card-print small{font:900 .58rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#A04A28}
+.project .frame::after,.piece::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(10,18,15,.28));pointer-events:none}
+.p3::after{display:none}
+.project .frame img{transition:transform .9s var(--ease),filter .6s}
+.project:hover .frame img{transform:scale(1.05);filter:saturate(1.12)}
+.shot{margin:-4px -4px 6px;border-radius:14px;overflow:hidden;aspect-ratio:16/9}
+.service{min-height:0}
+.desk{margin:0;aspect-ratio:4/5;box-shadow:var(--shadow)}
+.desk img{filter:saturate(.9) contrast(1.02)}
+
+/* Aparición al hacer scroll: el estado de reposo es visible; solo se anima si JS marca la página */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .hero-grid,.head,.studio-grid,.contact-grid{grid-template-columns:1fr}
+  .collage{max-width:560px;margin-inline:auto;width:100%}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps li::after{display:none}
+  .project,.project.wide{grid-column:span 6}
+  .foot{grid-template-columns:1fr 1fr}
+}
+@media (max-width:780px){
+  .menu-btn{display:grid;place-items:center}
+  .nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:16px;background:var(--paper);border-bottom:1px solid var(--line);padding-block:16px 24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));box-shadow:var(--shadow)}
+  .nav.open{display:flex}
+  .nav ul{flex-direction:column;align-items:stretch}
+  .nav details ul{position:static;box-shadow:none;min-width:0;margin-top:6px}
+  .services,.row2{grid-template-columns:1fr}
+  .service{min-height:400px}
+  .project,.project.wide{grid-column:1/-1}
+}
+@media (max-width:480px){ .steps,.foot{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="site-header" id="top">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Nimbo Estudio, inicio">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="22" r="12" fill="var(--saffron)"/><path d="M6 26c4-6 10-6 14 0s10 6 14 0v10H6z" fill="var(--accent)"/></svg>nimbo</a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+    </button>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <ul>
+        <li><details>
+          <summary>Servicios</summary>
+          <ul>
+            <li><a href="#servicios"><i style="background:var(--sage)"></i><span>Raíz<small>Identidad de marca</small></span></a></li>
+            <li><a href="#servicios"><i style="background:var(--sky)"></i><span>Trazo<small>Comunicación y espacios</small></span></a></li>
+          </ul>
+        </details></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#estudio">Estudio</a></li>
+        <li><a class="cta-mini" href="#contacto">Hablemos</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Estudio de diseño · Identidad · Espacios</p>
+        <h1>Marcas que la gente <span class="swash">recuerda</span> y <span class="hl">vuelve a ver<svg viewBox="0 0 400 30" preserveAspectRatio="none" aria-hidden="true"><path d="M4 20 C80 6 160 26 240 14 S360 8 396 18"/></svg></span>.</h1>
+        <p class="lead">Creamos identidades desde cero o las renovamos, y las llevamos a todas partes: una web, un catálogo, un escaparate o una campaña.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contacto">Cuéntanos tu idea
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <span class="avail"><i aria-hidden="true"></i>Agenda abierta para enero</span>
+        </div>
+      </div>
+
+      <div class="collage" role="img" aria-label="Collage de fotografías: un mostrador de panadería, una bolsa de café y una tarjeta de visita">
+        <!-- Cartel -->
+        <div class="piece p1"><img src="https://images.unsplash.com/photo-1761853321068-1477c9dfbbdb?auto=format&fit=crop&w=900&q=70" srcset="https://images.unsplash.com/photo-1761853321068-1477c9dfbbdb?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1761853321068-1477c9dfbbdb?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1761853321068-1477c9dfbbdb?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1761853321068-1477c9dfbbdb?auto=format&fit=crop&w=1600&q=70 1600w" sizes="(max-width:960px) 50vw, 320px" alt="Mostrador de panadería con pan y bollería recién hechos" decoding="async" loading="eager" fetchpriority="high"><span class="sticker">Horno Lunar</span></div>
+        <!-- Paquete de café -->
+        <div class="piece p2"><img src="https://images.unsplash.com/photo-1695245503558-5cdb37f49092?auto=format&fit=crop&w=900&q=70" srcset="https://images.unsplash.com/photo-1695245503558-5cdb37f49092?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1695245503558-5cdb37f49092?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1695245503558-5cdb37f49092?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1695245503558-5cdb37f49092?auto=format&fit=crop&w=1600&q=70 1600w" sizes="(max-width:960px) 45vw, 280px" alt="Bolsa de café de papel kraft sin etiquetar" decoding="async" loading="eager" fetchpriority="high"><span class="sticker s2">Café Brisa</span></div>
+        <!-- Tarjetas -->
+        <div class="piece p3"><img src="https://images.unsplash.com/photo-1778567148288-233997494476?auto=format&fit=crop&w=900&q=70" srcset="https://images.unsplash.com/photo-1778567148288-233997494476?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1778567148288-233997494476?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1778567148288-233997494476?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1778567148288-233997494476?auto=format&fit=crop&w=1600&q=70 1600w" sizes="(max-width:960px) 60vw, 360px" alt="Tarjeta de visita en blanco sobre tela arrugada" decoding="async" loading="eager" fetchpriority="high"><span class="card-print"><b>Tinta</b><small>librería de barrio</small></span></div>
+        <div class="badge" aria-hidden="true"><svg viewBox="0 0 120 120">
+          <defs><path id="c" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs>
+          <circle cx="60" cy="60" r="58" fill="var(--paper)" stroke="currentColor" stroke-width="1.5"/>
+          <text font-family="Nunito Sans, sans-serif" font-weight="900" font-size="10.5" letter-spacing="3.2" fill="currentColor"><textPath href="#c">DISEÑO CON CALMA · HECHO A MANO · </textPath></text>
+        </svg></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div class="ticker-track">
+    <span>Identidad</span><span>Packaging</span><span>Webs</span><span>Catálogos</span><span>Campañas</span><span>Señalética</span><span>Escaparates</span>
+    <span>Identidad</span><span>Packaging</span><span>Webs</span><span>Catálogos</span><span>Campañas</span><span>Señalética</span><span>Escaparates</span>
+  </div></div>
+
+  <!-- SERVICIOS -->
+  <section class="band" id="servicios" aria-labelledby="t-serv">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Qué resolvemos</p>
+        <h2 id="t-serv">Empezar bien. <em>Crecer con criterio.</em></h2>
+        <p>Dos formas de trabajar contigo: construir la base de tu marca o desarrollar todo lo que viene después. Puedes contratar una o las dos.</p>
+      </div>
+      <div class="services">
+        <article class="service raiz reveal">
+          <figure class="shot"><img src="https://images.unsplash.com/photo-1498075702571-ecb018f3752d?auto=format&fit=crop&w=900&q=70" srcset="https://images.unsplash.com/photo-1498075702571-ecb018f3752d?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1498075702571-ecb018f3752d?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1498075702571-ecb018f3752d?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1498075702571-ecb018f3752d?auto=format&fit=crop&w=1600&q=70 1600w" sizes="(max-width:780px) 92vw, 560px" alt="Mano rotulando letras a lápiz sobre papel de calco" decoding="async" loading="lazy"></figure>
+          <span class="kicker">Raíz · identidad</span>
+          <h3>Una marca con fondo.</h3>
+          <p>Diagnóstico, dirección visual y las piezas que vas a usar de verdad. Para negocios que empiezan o que se han quedado pequeños con su imagen.</p>
+          <ul><li>Diagnóstico</li><li>Logotipo</li><li>Paleta y tipografía</li><li>Manual de uso</li></ul>
+          <a class="more" href="#contacto">Quiero mi identidad →</a>
+          
+        </article>
+        <article class="service trazo reveal">
+          <figure class="shot"><img src="https://images.unsplash.com/photo-1557243962-0a093922933f?auto=format&fit=crop&w=900&q=70" srcset="https://images.unsplash.com/photo-1557243962-0a093922933f?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1557243962-0a093922933f?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1557243962-0a093922933f?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1557243962-0a093922933f?auto=format&fit=crop&w=1600&q=70 1600w" sizes="(max-width:780px) 92vw, 560px" alt="Bocetos impresos y lápices sobre una mesa de trabajo" decoding="async" loading="lazy"></figure>
+          <span class="kicker">Trazo · comunicación</span>
+          <h3>Que se vea en todas partes.</h3>
+          <p>Campañas, catálogos y espacios con un mismo criterio. Por proyecto cerrado o como equipo de diseño externo, de forma continua.</p>
+          <ul><li>Web</li><li>Packaging</li><li>Campañas</li><li>Escaparates</li></ul>
+          <a class="more" href="#contacto">Quiero comunicar →</a>
+          
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section class="band" id="proyectos" aria-labelledby="t-proy" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Proyectos</p>
+        <h2 id="t-proy">Piezas que <em>invitan a entrar</em>.</h2>
+        <p>Una muestra de encargos de ejemplo. Los negocios son ficticios y las fotografías son de Unsplash; el tipo de trabajo es el que hacemos cada semana.</p>
+      </div>
+      <div class="projects">
+        <a class="project wide reveal" href="#contacto">
+          <div class="frame"><img src="https://images.unsplash.com/photo-1674066253665-4d2553a3bcb8?auto=format&fit=crop&w=900&q=70" srcset="https://images.unsplash.com/photo-1674066253665-4d2553a3bcb8?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1674066253665-4d2553a3bcb8?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1674066253665-4d2553a3bcb8?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1674066253665-4d2553a3bcb8?auto=format&fit=crop&w=1600&q=70 1600w" sizes="(max-width:780px) 92vw, 780px" alt="Cajas de fruta seca y fresca en un puesto de mercado" decoding="async" loading="lazy"><span class="sticker">Huerta Sol</span></div>
+          <div class="meta"><h3>Huerta Sol</h3><span class="tags">Escaparate · señalética</span></div>
+          <p class="note">Frutería de barrio que necesitaba que la vieran desde la otra acera.</p>
+        </a>
+        <a class="project reveal" href="#contacto">
+          <div class="frame"><img src="https://images.unsplash.com/photo-1586996292898-71f4036c4e07?auto=format&fit=crop&w=900&q=70" srcset="https://images.unsplash.com/photo-1586996292898-71f4036c4e07?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1586996292898-71f4036c4e07?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1586996292898-71f4036c4e07?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1586996292898-71f4036c4e07?auto=format&fit=crop&w=1600&q=70 1600w" sizes="(max-width:780px) 92vw, 380px" alt="Tablas de surf de madera apoyadas contra un seto" decoding="async" loading="lazy"><span class="sticker">Ola</span></div>
+          <div class="meta"><h3>Ola</h3><span class="tags">Campaña · cartel</span></div>
+          <p class="note">Campaña de temporada para una escuela de surf.</p>
+        </a>
+        <a class="project reveal" href="#contacto">
+          <div class="frame"><img src="https://images.unsplash.com/photo-1592178036182-5400889dfc74?auto=format&fit=crop&w=900&q=70" srcset="https://images.unsplash.com/photo-1592178036182-5400889dfc74?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1592178036182-5400889dfc74?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1592178036182-5400889dfc74?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1592178036182-5400889dfc74?auto=format&fit=crop&w=1600&q=70 1600w" sizes="(max-width:780px) 92vw, 380px" alt="Estantería con tarros de cristal llenos de legumbres y especias" decoding="async" loading="lazy"><span class="sticker">Despensa Nórdica</span></div>
+          <div class="meta"><h3>Despensa Nórdica</h3><span class="tags">Packaging</span></div>
+          <p class="note">Línea de tarros con un color por sabor.</p>
+        </a>
+        <a class="project wide reveal" href="#contacto">
+          <div class="frame"><img src="https://images.unsplash.com/photo-1774070231417-4bf4d2025878?auto=format&fit=crop&w=900&q=70" srcset="https://images.unsplash.com/photo-1774070231417-4bf4d2025878?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1774070231417-4bf4d2025878?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1774070231417-4bf4d2025878?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1774070231417-4bf4d2025878?auto=format&fit=crop&w=1600&q=70 1600w" sizes="(max-width:780px) 92vw, 780px" alt="Interior de una librería con estanterías llenas de libros" decoding="async" loading="lazy"><span class="sticker">Tinta</span></div>
+          <div class="meta"><h3>Tinta</h3><span class="tags">Identidad · web</span></div>
+          <p class="note">Librería de barrio con tienda online y recomendaciones semanales.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="band process" id="proceso" aria-labelledby="t-proc">
+    <div class="wrap">
+      <div class="head reveal">
+        <p class="eyebrow">Cómo trabajamos</p>
+        <h2 id="t-proc">Cuatro pasos, <em>sin sorpresas</em>.</h2>
+        <p>Antes de presupuestar comprobamos que encajamos. Así sabes qué vas a recibir, cuándo y por cuánto.</p>
+      </div>
+      <ol class="steps">
+        <li class="reveal"><span class="time">Semana 1</span><h3>Café y conversación</h3><p>Nos cuentas qué quieres resolver y vemos si somos el estudio adecuado.</p></li>
+        <li class="reveal"><span class="time">Semana 1–2</span><h3>Propuesta cerrada</h3><p>Alcance, plazos y precio por escrito. Sin letra pequeña.</p></li>
+        <li class="reveal"><span class="time">Semana 2–6</span><h3>Diseño</h3><p>Dos rondas de revisión incluidas en cada entrega.</p></li>
+        <li class="reveal"><span class="time">Entrega</span><h3>Lanzamiento</h3><p>Archivos finales, manual y acompañamiento el día que sale.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ESTUDIO -->
+  <section class="band studio" id="estudio" aria-labelledby="t-est">
+    <div class="orbit" aria-hidden="true"></div>
+    <div class="wrap studio-grid">
+      <figure class="desk reveal"><img src="https://images.unsplash.com/photo-1608804375369-498a4b601e42?auto=format&fit=crop&w=900&q=70" srcset="https://images.unsplash.com/photo-1608804375369-498a4b601e42?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1608804375369-498a4b601e42?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1608804375369-498a4b601e42?auto=format&fit=crop&w=1200&q=70 1200w, https://images.unsplash.com/photo-1608804375369-498a4b601e42?auto=format&fit=crop&w=1600&q=70 1600w" sizes="(max-width:960px) 92vw, 540px" alt="Diseñadora bocetando a mano sobre papel en la mesa del estudio" decoding="async" loading="lazy"></figure>
+      <div class="col reveal">
+        <p class="eyebrow">El estudio</p>
+        <h2 id="t-est">Pequeño a propósito. <em>Cerca de ti.</em></h2>
+        <blockquote>Hablas siempre con la misma persona, desde la primera idea hasta la última pieza.</blockquote>
+        <p>Nimbo es un estudio pequeño. Identidad, packaging, catálogos, campañas y espacios con una visión de conjunto y atención al detalle.</p>
+        <a class="btn btn-ghost" href="#contacto">Conocernos en un café</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="band" id="contacto" aria-labelledby="t-cont">
+    <div class="wrap contact-grid">
+      <div class="col reveal">
+        <p class="eyebrow">Empecemos</p>
+        <h2 id="t-cont">¿Qué necesita <em>tu marca</em> ahora?</h2>
+        <p>Cuéntanos qué quieres resolver. Revisamos el encaje y concretamos el alcance antes de preparar una propuesta. Respondemos en 48 horas.</p>
+        <div class="mail"><code id="mail">hola@nimbo.example</code><button class="copy" type="button" id="copy">Copiar</button></div>
+        <p class="hint">Dirección ficticia de esta maqueta.</p>
+      </div>
+      <form id="contact-form" class="reveal" novalidate>
+        <div class="row2">
+          <div class="field"><label for="f-name">Nombre</label><input id="f-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="f-mail">Correo</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <fieldset class="field" style="border:0;padding:0;margin:0">
+          <legend class="legend" style="margin-bottom:8px">Te interesa</legend>
+          <div class="chips">
+            <input type="radio" name="service" id="s1" value="Raíz" checked><label for="s1">Raíz · identidad</label>
+            <input type="radio" name="service" id="s2" value="Trazo"><label for="s2">Trazo · comunicación</label>
+            <input type="radio" name="service" id="s3" value="Las dos"><label for="s3">Aún no lo sé</label>
+          </div>
+        </fieldset>
+        <div class="field"><label for="f-msg">Tu proyecto</label><textarea id="f-msg" name="message" required></textarea>
+          <span class="hint">Dos o tres frases bastan: qué hacéis y qué queréis cambiar.</span></div>
+        <button class="btn btn-primary" type="submit">Enviar mensaje
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <p class="status" id="f-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="big-word" aria-hidden="true">nimbo</p>
+    <div class="foot">
+      <div><p class="hint">Estrategia, identidad y diseño. Maqueta de práctica con marca y proyectos ficticios.</p></div>
+      <div><h4>Servicios</h4><ul><li><a href="#servicios">Raíz</a></li><li><a href="#servicios">Trazo</a></li></ul></div>
+      <div><h4>Estudio</h4><ul><li><a href="#proyectos">Proyectos</a></li><li><a href="#proceso">Proceso</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="#top">Aviso legal</a></li><li><a href="#top">Privacidad</a></li><li><a href="#top">Cookies</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 Nimbo Estudio (marca ficticia)</span><span>Fotografías: <a href="https://unsplash.com/es/fotos/expositor-de-panaderia-con-pan-fresco-y-bolleria-H3jp35HOi6Q">Unsplash</a> (licencia Unsplash, uso gratuito). Sin cookies de seguimiento.</span></div>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.add('js');
+// Aparición al hacer scroll (si no hay soporte, todo queda visible)
+const reveals=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  reveals.forEach(el=>io.observe(el));
+  // red de seguridad: si algo no ha entrado tras 2,5 s (capturas, impresiones), se muestra igual
+  setTimeout(()=>reveals.forEach(el=>el.classList.add('in')),2500);
+} else reveals.forEach(el=>el.classList.add('in'));
+
+// Borde de la cabecera al bajar
+const header=document.querySelector('.site-header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>8),{passive:true});
+
+// Menú móvil
+const btn=document.getElementById('menu-btn'), nav=document.getElementById('nav');
+btn.addEventListener('click',()=>{const open=nav.classList.toggle('open');btn.setAttribute('aria-expanded',open);btn.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú')});
+nav.addEventListener('click',e=>{if(e.target.closest('a')){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');nav.querySelectorAll('details[open]').forEach(d=>d.open=false)}});
+document.addEventListener('click',e=>nav.querySelectorAll('details[open]').forEach(d=>{if(!d.contains(e.target))d.open=false}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')nav.querySelectorAll('details[open]').forEach(d=>d.open=false)});
+
+// Inclinación suave de las tarjetas de proyecto con el ratón
+document.querySelectorAll('.project .frame').forEach(f=>{
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||matchMedia('(hover: none)').matches)return;
+  f.addEventListener('mousemove',e=>{const r=f.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;f.style.transform=`perspective(900px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-6px)`});
+  f.addEventListener('mouseleave',()=>f.style.transform='');
+});
+
+// Copiar correo
+const copyBtn=document.getElementById('copy');
+copyBtn.addEventListener('click',async()=>{
+  const t=document.getElementById('mail').textContent;
+  try{await navigator.clipboard.writeText(t);copyBtn.textContent='Copiado'}
+  catch{const s=getSelection(),r=document.createRange();r.selectNodeContents(document.getElementById('mail'));s.removeAllRanges();s.addRange(r);copyBtn.textContent='Selecciónalo y copia'}
+  setTimeout(()=>copyBtn.textContent='Copiar',2000);
+});
+
+// Formulario (maqueta: valida pero no envía)
+const form=document.getElementById('contact-form'), status=document.getElementById('f-status');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const bad=[...form.querySelectorAll('[required]')].find(el=>!el.value.trim()||(el.type==='email'&&!el.checkValidity()));
+  if(bad){status.textContent=bad.type==='email'?'Revisa el correo: falta la @ o el dominio.':'Rellena el campo "'+form.querySelector('label[for="'+bad.id+'"]').textContent+'".';bad.focus();return}
+  status.textContent='Mensaje listo. En esta maqueta no se envía: conecta el formulario a tu backend.';
+  form.reset();
+});
+</script>
+
+</body>
+</html>
